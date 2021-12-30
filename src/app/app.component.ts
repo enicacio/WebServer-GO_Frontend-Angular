@@ -1,3 +1,4 @@
+import { ContatoService } from './contato.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-hello-word';
+  
+  users: Array<any> = [];
+  
+  constructor(private service : ContatoService) {
+
+    this.service.getUsers().subscribe((data) => {
+      this.users = data;
+      console.log(this.users);
+    })
+  }
+
 }
